@@ -3,6 +3,7 @@ package com.elzizusv.hunterexam.base;
 import com.elzizusv.hunterexam.HunterExam;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.crafting.Ingredient;
 
@@ -10,17 +11,17 @@ import java.util.function.Supplier;
 
 public record ModArmorMaterial(String name, int durability, int[] protection, int enchantability, SoundEvent equipSound,
                                float toughness, float knockbackResistance, Supplier<Ingredient> repairMaterial)
-implements  ArmorMaterial{
+        implements  ArmorMaterial{
     private static final int[] DURABILITY_PER_SLOT = new int[]{20000,20000,20000,20000};
 
     @Override
-    public int getDurabilityForSlot(EquipmentSlot slot) {
-        return DURABILITY_PER_SLOT[slot.getIndex()];
+    public int getDurabilityForType(ArmorItem.Type type) {
+        return DURABILITY_PER_SLOT[type.getSlot().getIndex()];
     }
 
     @Override
-    public int getDefenseForSlot(EquipmentSlot slot) {
-        return this.protection[slot.getIndex()];
+    public int getDefenseForType(ArmorItem.Type type) {
+        return this.protection[type.getSlot().getIndex()];
     }
 
     @Override
