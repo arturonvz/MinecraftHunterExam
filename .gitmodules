@@ -1,0 +1,3 @@
+[submodule "simple-voice-chat"]
+	path = simple-voice-chat
+	url = ../../henkelmax/simple-voice-chat.git
